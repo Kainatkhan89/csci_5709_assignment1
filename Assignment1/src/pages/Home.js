@@ -1,8 +1,8 @@
-import { Button, Center, Stack, Heading, Box,Text} from "@chakra-ui/react";
+import { Button, Center, Heading, Stack } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function()
+export default function Home()
 {
     const navigate = useNavigate();
     return(

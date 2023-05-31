@@ -1,33 +1,30 @@
-import React from "react";
-import { userLogin } from '../utils/mockAPI.js';
-import ErrorMessage from '../components/ErrorMessage';
-import { useState } from "react";
 import {
-  Center,
-  Heading,
-  Input,
-  Button,
-  InputGroup,
-  Stack,
-  InputLeftElement,
-  chakra,
   Box,
-  Text,
-  FormControl,
-  FormHelperText,
-  InputRightElement,
+  Button,
+  Center,
   Checkbox,
   CircularProgress,
-  useToast
+  FormControl,
+  FormHelperText,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Stack,
+  Text,
+  chakra
 } from "@chakra-ui/react";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaLock, FaUserAlt } from "react-icons/fa";
+import ErrorMessage from '../components/ErrorMessage';
+import { userLogin } from '../utils/mockAPI.js';
 
 
-export default function()
+export default function Login()
 {   
     const CFaUserAlt = chakra(FaUserAlt);
     const CFaLock = chakra(FaLock);
-    const toast = useToast()
     const [showPassword, setShowPassword] = useState(false);
     const handleShowClick = () => setShowPassword(!showPassword);
     // --handle submit
@@ -35,13 +32,11 @@ export default function()
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const handleSubmit = async event => {
       event.preventDefault();
       setIsLoading(true);
       try {
         await userLogin({ email, password });
-        setIsLoggedIn(true);
         setIsLoading(false);
         setShowPassword(false);
       } catch (error) {
@@ -55,22 +50,7 @@ export default function()
     // handle success
    
  
-    const showSuccessToast = () => {
-      toast({
-        title: "Logged in",
-        description: "Successfully logged in" ,
-        duration: 5000,
-        isClosable:true
-      })
-    }
-      const showErrorToast = () => {
-        toast({
-          title: "Logged in",
-          description: "Error logging in" ,
-          duration: 5000,
-          isClosable:true
-        })
-    }
+
     return(
         <Center h="100vh" bg="#191414">         
            <Stack
